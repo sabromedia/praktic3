@@ -1,0 +1,57 @@
+Window x:Class="praktic3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:praktic3"
+        mc:Ignorable="d"
+        Title="Описание числа" Height="150" Width="370">
+    <Grid>
+        <Label Content="Введите целое число (1-999):" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="numberTextBox" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Описание" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75" Click="BtnOK_Click"/>
+        <Label x:Name="resultLabel" Content="" HorizontalAlignment="Left" Margin="120,60,0,0" VerticalAlignment="Top" Width="210"/>
+    </Grid>
+</Window>
+
+
+namespace praktic3
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        {
+            int number = int.Parse(numberTextBox.Text);
+            string description = "";
+
+            if (number < 10)
+            {
+                description = "однозначное число";
+            }
+            else if (number < 100)
+            {
+                description += "двузначное ";
+            }
+            else
+            {
+                description += "трехзначное ";
+            }
+
+            if (number % 2 == 0)
+            {
+                description += "четное число";
+            }
+            else
+            {
+                description += "нечетное число";
+            }
+
+            resultLabel.Content = description;
+        }
+    }
+}
